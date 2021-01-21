@@ -29,17 +29,17 @@ var cpick = new iro.ColorPicker("#picker", {
 	wheelLightness: false,
   wheelAngle: 90,
   layout: [
-    { 
+    {
       component: iro.ui.Wheel,
       options: {}
     },
-    { 
+    {
       component: iro.ui.Slider,
       options: {
         sliderType: 'value'
       }
     },
-    { 
+    {
       component: iro.ui.Slider,
       options: {
         sliderType: 'kelvin',
@@ -177,12 +177,12 @@ function onLoad() {
 	}
 	var sett = localStorage.getItem('wledUiCfg');
 	if (sett) cfg = mergeDeep(cfg, JSON.parse(sett));
-	
+
 	resetPUtil();
-	
+
 	applyCfg();
 	loadBg(cfg.theme.bg.url);
-	
+
 	var cd = d.getElementById('csl').children;
 	for (var i = 0; i < cd.length; i++) {
 		cd[i].style.backgroundColor = "rgb(0, 0, 0)";
@@ -233,7 +233,7 @@ function showToast(text, error = false) {
 	x.className = error ? "error":"show";
 	clearTimeout(timeout);
 	x.style.animation = 'none';
-	x.style.animation = null; 
+	x.style.animation = null;
 	timeout = setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2900);
 }
 
@@ -255,7 +255,7 @@ function getRuntimeStr(rt)
 	if (!days && hrs) str += ", ";
 	if (t > 59 && !days) str += mins + " min";
 	if (t < 3600 && t > 59) str += ", ";
-	if (t < 3600) str += (t - mins*60) + " sec"; 
+	if (t < 3600) str += (t - mins*60) + " sec";
 	return str;
 }
 
@@ -271,7 +271,7 @@ function getLowestUnusedP()
 	{
 		if (key == l) l++;
   }
-  if (l > 250) l = 250; 
+  if (l > 250) l = 250;
 	return l;
 }
 
@@ -311,7 +311,7 @@ function cpBck() {
   copyText.setSelectionRange(0, 999999);
 
   document.execCommand("copy");
-	
+
 	showToast("Copied to clipboard!");
 }
 
@@ -322,12 +322,12 @@ function presetError(empty)
 		bckstr = localStorage.getItem("wledP");
 		if (bckstr.length > 10) hasBackup = true;
 	} catch (e) {
-	
+
 	}
 	var cn = `<div class="seg c">`;
-	if (empty) 
+	if (empty)
 		cn += `You have no presets yet!`;
-	else 
+	else
 		cn += `Sorry, there was an issue loading your presets!`;
 
 	if (hasBackup) {
@@ -351,7 +351,7 @@ function loadPresets()
 	if (loc) {
 		url = `http://${locip}/presets.json`;
 	}
-	
+
 	fetch
 	(url, {
 		method: 'get'
@@ -380,7 +380,7 @@ function populateQL()
 	var cn = "";
 	if (pQL.length > 0) {
 	cn += `<p class="labels">Quick load</p>`;
-  
+
   var it = 0;
 	for (var key of (pQL||[]))
 	{
@@ -392,7 +392,7 @@ function populateQL()
     }
   }
   if (it != 0) cn+= '<br>';
-	
+
 	cn += `<p class="labels">All presets</p>`;
 	}
 	d.getElementById('pql').innerHTML = cn;
@@ -416,7 +416,7 @@ function populatePresets(fromls)
 		var qll = key[1].ql;
     if (qll) pQL.push([i, qll]);
     is.push(i);
-		
+
     cn += `<div class="seg pres" id="p${i}o">`;
     if (cfg.comp.pid) cn += `<div class="pid">${i}</div>`;
     cn += `<div class="segname pname" onclick="setPreset(${i})">${pName(i)}</div>
@@ -466,7 +466,7 @@ function populateInfo(i)
 	var vcn = "Kuuhaku";
 	if (i.ver.startsWith("0.11.")) vcn = "Mirai";
 	if (i.cn) vcn = i.cn;
-	
+
 	cn += `v${i.ver} "${vcn}"<br><br><table class="infot">
 	${urows}
 	${inforow("Build",i.vid)}
@@ -485,17 +485,17 @@ function populateSegments(s)
 {
 	var cn = "";
 	segCount = 0; lowestUnused = 0; lSeg = 0;
- 
+
 	for (var y = 0; y < (s.seg||[]).length; y++)
 	{
 		segCount++;
-		
+
 		var inst=s.seg[y];
 		let i = parseInt(inst.id);
 		powered[i] = inst.on;
 		if (i == lowestUnused) lowestUnused = i+1;
 		if (i > lSeg) lSeg = i;
-		
+
 		cn += `<div class="seg">
 			<label class="check schkl">
 				&nbsp;
@@ -608,7 +608,7 @@ function updateLen(s)
 	} else if (len == 1) {
 		out = "1 LED";
 	}
-	
+
 	if (d.getElementById(`seg${s}grp`) != null)
 	{
 		var grp = parseInt(d.getElementById(`seg${s}grp`).value);
@@ -617,7 +617,7 @@ function updateLen(s)
 		var virt = Math.ceil(len/(grp + spc));
 		if (!isNaN(virt) && (grp > 1 || spc > 0)) out += ` (${virt} virtual)`;
 	}
-	
+
 	d.getElementById(`seg${s}len`).innerHTML = out;
 }
 
@@ -690,7 +690,7 @@ function requestJson(command, rinfo = true, verbose = true) {
 	if (loc) {
 		url = `http://${locip}${url}`;
 	}
-	
+
 	var type = command ? 'post':'get';
 	if (command)
 	{
@@ -745,7 +745,7 @@ function requestJson(command, rinfo = true, verbose = true) {
 		}
 		e1.innerHTML=x; e2.innerHTML=y;
 		}
-		
+
 			var info = json.info;
 			var name = info.name;
 			d.getElementById('namelabel').innerHTML = name;
@@ -778,7 +778,7 @@ function requestJson(command, rinfo = true, verbose = true) {
 		d.getElementById('cyce').value = s.ccnf.max;
 		d.getElementById('cyct').value = s.ccnf.time /10;
 		d.getElementById('cyctt').value = s.transition /10;
-		
+
 		var selc=0; var ind=0;
 		populateSegments(s);
 		for (let i = 0; i < (s.seg||[]).length; i++)
@@ -1068,7 +1068,7 @@ function toggleCY() {
 		obj = {"pl": 0, "ccnf": {"min": parseInt(d.getElementById('cycs').value), "max": parseInt(d.getElementById('cyce').value), "time": parseInt(d.getElementById('cyct').value*10)}};
 		obj.transition = parseInt(d.getElementById('cyctt').value*10);
 	}
-	
+
 	requestJson(obj);
 }
 
@@ -1352,7 +1352,7 @@ function move(e) {
 	x0 = null;
 }
 
-function size() { 
+function size() {
 	w = window.innerWidth;
 	var h = d.getElementById('top').clientHeight;
 	sCol('--th', h + "px");
