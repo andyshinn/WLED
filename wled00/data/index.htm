@@ -35,6 +35,7 @@
 					<input id="sliderBri" onchange="setBri()" oninput="updateTrail(this)" max="255" min="1" type="range" value="128" />
 					<div class="sliderdisplay"></div>
 				</div>
+				<output class="sliderbubble"></output>
 			</div>
 		</div>
 		<iframe id="liveview" src="about:blank"></iframe>
@@ -45,18 +46,30 @@
 	<div id="Colors" class="tabcontent">
 		<div id="picker" class="noslide"></div>
 		<div id="rgbwrap">
-			<div class="sliderwrap il">
-				<input id="sliderR" class="noslide" onchange="fromRgb()" oninput="updateTrail(this,1)" max="255" min="0" type="range" value="128" />
-				<div class="sliderdisplay"></div>
-			</div><br>
-			<div class="sliderwrap il">
-				<input id="sliderG" class="noslide" onchange="fromRgb()" oninput="updateTrail(this,2)" max="255" min="0" type="range" value="128" />
-				<div class="sliderdisplay"></div>
-			</div><br>
-			<div class="sliderwrap il">
-				<input id="sliderB" class="noslide" onchange="fromRgb()" oninput="updateTrail(this,3)" max="255" min="0" type="range" value="128" />
-				<div class="sliderdisplay"></div>
-			</div><br>
+			<div id="rwrap" class="il">
+				<div class="sliderwrap il">
+					<input id="sliderR" class="noslide" onchange="fromRgb()" oninput="updateTrail(this,1)" max="255" min="0" type="range" value="128" />
+					<div class="sliderdisplay"></div>
+				</div>
+				<output class="sliderbubble"></output>
+		  </div>
+			<br>
+			<div id="gwrap" class="il">
+				<div class="sliderwrap il">
+					<input id="sliderG" class="noslide" onchange="fromRgb()" oninput="updateTrail(this,2)" max="255" min="0" type="range" value="128" />
+					<div class="sliderdisplay"></div>
+				</div>
+				<output class="sliderbubble"></output>
+			</div>
+			<br>
+			<div id="bwrap" class="il">
+				<div class="sliderwrap il">
+					<input id="sliderB" class="noslide" onchange="fromRgb()" oninput="updateTrail(this,3)" max="255" min="0" type="range" value="128" />
+					<div class="sliderdisplay"></div>
+				</div>
+				<output class="sliderbubble"></output>
+			</div>
+			<br>
 		</div>
 		<div id="wwrap">
 			<p class="labels">White channel</p>
@@ -64,6 +77,7 @@
 				<input id="sliderW" class="noslide" onchange="setColor(0)" oninput="updateTrail(this)" max="255" min="0" type="range" value="128" />
 				<div class="sliderdisplay"></div>
 			</div>
+			<output class="sliderbubble"></output>
 		</div>
 		<div id="qcs-w">
 			<div class="qcs" onclick="pC('#ff0000');" style="background-color:#ff0000;"></div>
@@ -87,7 +101,7 @@
 			<input id="hexc" type="text" class="noslide" onkeydown="hexEnter(this)" autocomplete="off" maxlength="8" />
 			<button id="hexcnf" class="xxs btn" onclick="fromHex();"><i class="icons btna-icon">&#xe390;</i></button>
 		</div>
-		<p class="labels">Color palette</p> 
+		<p class="labels">Color palette</p>
 		<div class="il">
 			<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i>
 			<select class="btn sel" id="selectPalette" onchange="setPalette()">
@@ -103,18 +117,18 @@
 			<i class="icons slider-icon">&#xe325;</i>
 			<div class="sliderwrap il">
 				<input id="sliderSpeed" class="noslide" onchange="setSpeed()" oninput="updateTrail(this)" max="255" min="0" type="range" value="128" />
-				<output class="sliderbubble hidden"></output>
 				<div class="sliderdisplay"></div>
 			</div>
+			<output class="sliderbubble"></output>
 		</div>
 		<p class="labels">Effect intensity</p>
 		<div class="staytop" id="staytop1">
 			<i class="icons slider-icon" onclick="tglLabels()">&#xe409;</i>
 			<div class="sliderwrap il">
 				<input id="sliderIntensity" class="noslide" onchange="setIntensity()" oninput="updateTrail(this)" max="255" min="0" type="range" value="128" />
-				<output class="sliderbubble hidden"></output>
 				<div class="sliderdisplay"></div>
 			</div>
+			<output class="sliderbubble"></output>
 		</div>
 		<p class="labels">Effect mode</p>
 		<div class="staytop" id="staytop2">
@@ -125,13 +139,13 @@
 		</div>
 		<br>
 	</div>
-	
+
 	<div id="Segments" class="tabcontent">
 		<div id="segcont">
 			Loading...
 		</div>
 		<div id="segutil">
-			
+
 		</div>
 		<div id="segutil2">
 			<button class="btn btn-s" id="rsbtn" onclick="rSegs()">Reset segments</button>
@@ -140,7 +154,7 @@
 
 	<div id="Favorites" class="tabcontent">
 		<div id="putil">
-			
+
 		</div>
 		<div id="pql">
 
